@@ -3,7 +3,7 @@
 ## BACKGROUND
 Bellabeat, a 2013-founded high-tech company that manufactures health-focused smart products wants to analyze the usage of one of its products in order to gain insight into how people are already using their smart devices. Then, using this information, the company’s executives would like high-level recommendations for how these trends can inform Bellabeat's marketing strategy. The stakeholders believe that analyzing smart device fitness can help unlock new growth opportunities for the company; thus becoming a larger player in the global smart device market.
 
-## DATA ANALYSIS PROCESS
+## DATA ANALYSIS PROCESSES
 **PHASE 1: ASK**
 1. Identify the business task:
 Bellabeat wants to run an analysis on how consumers are already using smart devices to provide a data-driven marketing strategy that will contribute to the company’s growth.
@@ -50,6 +50,7 @@ There is some visible dissonance in the date formats for the sleepDay.csv and th
 First, all the necessary data is loaded for analaysis on Google BigQuery. To identify the number of unique Ids for each table, I run the following query:
 
 ```
+-- Will yield unique IDs for each tbale
 SELECT DISTINCT Id FROM `bellabeatcasestudy-379900.Bellabeat.dailyActivity`;
 SELECT DISTINCT Id FROM `bellabeatcasestudy-379900.Bellabeat.dailyCalories`;
 SELECT DISTINCT Id FROM `bellabeatcasestudy-379900.Bellabeat.dailyIntensities`;
@@ -59,11 +60,27 @@ SELECT DISTINCT Id FROM `bellabeatcasestudy-379900.Bellabeat.weightLog`;
 ```
 The results of this query showed that tables 1, 2, 3, and 4 have 33 distinct IDs, while table 5 and 6 have 24 and 8 distinct IDs, correspondingly. These results reveal some early inconsistencies as we expect 30 unique IDs on all tables since the data was collected from 30 Fitbit users. The sleepDay and the weightLog tables have the highest numbers of inconsistency having 6 and 22 inputs missing. 
 
+**PHASE 4: ANALYSIS**
 
-**PHASE 4: ANALAYSIS**
+Then, we will establish 3 initial hypotheses in hopes of discovering relationships between variables. 
+1) There is a relationship between activity level and calories burned
+2) There is a relationship between activity level and sleep time
+3) There is a relationship between activity level and BMI
+
+Now, it is time to see start our analysis and confirm or reject our hypothesis. We will first observe the relationship between activity level and calories burned. Then, we will check the other two potential relationships.
 
 ```
-SELECT activity.Id, 
+-- Observing relationship between activity level and calories burned
+SELECT *
+FROM `bellabeatcasestudy-379900.Bellabeat.dailyActivity`
+WHERE VeryActiveDistance + 
+ModeratelyActiveDistance + LightActiveDistance <> 0 AND VeryActiveMinutes + FairlyActiveMinutes+LightlyActiveMinutes <> 0
+ORDER BY TotalSteps DESC
+ ```
+ 
+ ```
+ -- Observing relationship between activity level and sleep time
+ SELECT activity.Id, 
 ActivityDate,
 Calories, 
 TotalSleepRecords, 
@@ -80,7 +97,31 @@ LoggedActivitiesDistance,
 FROM `bellabeatcasestudy-379900.Bellabeat.dailyActivity` AS activity
 INNER JOIN `bellabeatcasestudy-379900.Bellabeat.sleepDay` AS sleep
 ON activity.Id = sleep.Id AND activity.ActivityDate = sleep.Date
+ ```
+ 
+ ```
+ -- Observing relationship between activity level and BMI
+SELECT activity.Id, 
+Calories, 
+BMI, 
+TotalSteps, 
+TotalDistance, 
+TrackerDistance, 
+LoggedActivitiesDistance, 
+VeryActiveDistance, 
+ModeratelyActiveDistance, 
+LightActiveDistance,
+SedentaryActiveDistance, 
+(VeryActiveMinutes+FairlyActiveMinutes+LightlyActiveMinutes) AS ActiveMinutes,
+SedentaryMinutes AS NonactiveMinutes
+FROM `bellabeatcasestudy-379900.Bellabeat.dailyActivity` AS activity
+INNER JOIN `bellabeatcasestudy-379900.Bellabeat.weightLog` AS weight
+ON activity.Id = weight.Id AND activity.ActivityDate = weight.Date
 ```
+*Note: Decided to choose BMI as the metric to analyze with activity level because BMI accounts for both height and weight, as opposed to only factoring in the weight of an individual. What if a person weights more than their 'ideal weight' but they have a higher percentage of muscles than average people? Would BMI still be an accurate measure?*
+
+
+**PHASE 5: SHARE THROUGH VISUALIZATIONS**
 
 
 
