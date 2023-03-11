@@ -118,23 +118,37 @@ ON activity.Id = weight.Id AND activity.ActivityDate = weight.Date
 ```
 *Note: Decided to choose BMI as the metric to analyze with activity level because BMI accounts for both height and weight, as opposed to only factoring in the weight of an individual. What if a person weights more than their 'ideal weight' but they have a higher percentage of muscles than average people? Would BMI still be an accurate measure?*
 
-### PHASE 5: SHARE THROUGH VISUALIZATIONS**
+### PHASE 5: SHARE THROUGH VISUALIZATIONS
 
 #### Visualization 1: Relationship Between Calories and Activity Level
 ![calories vs  activity level viz](https://user-images.githubusercontent.com/106201440/224438669-0be62dfb-fa33-45f9-ac7b-dcd4b68e192d.png)
 
-Based off the scatter plot above, the more active a person is, the more calories such individual will burn. Likewise, the amount of calories will decrease as the person becomes more sedentary. 
+Based on the scatter plot above, the more active a person is, the more calories such individual will burn. Likewise, the amount of calories will decrease as the person becomes more sedentary. 
 
 
 #### Visualization 2: Relationship Between Sleep Time and Non-active Minutes
 ![minutes asleep vs  nonactive minutes viz](https://user-images.githubusercontent.com/106201440/224438712-1077fcf4-7854-4eb3-985b-9adbf25fcfed.png)
 
-The visualization above is observing the interaction between total minutes asleep and non-active minutes. We can see that the more time a person spent non-active, the lower the time they are asleep in bed. It is a negative relationship which implies that when one variable increases, the other one decreases.
+The visualization above is observing the interaction between total minutes asleep and non-active minutes. We can conclude that the more time a person spent non-active, the less amount of minutes they were able to sleep. Sleep time and non-activity have a negative relationship which implies that when one variable increases, the other one decreases. Although we cannot predict a cause and effect or a correlation due to lack of analysis about sleep quality, this information invites us to think  about sleep quality and not just sleep quantity. *Could there a be relationship between quality of sleep and activity level?* Further research is needed.
 
 #### Visualization 3: Relationship Between Non-active Minutes and BMI
 ![active nonactiev minutes vs  BMI](https://user-images.githubusercontent.com/106201440/224438720-53d5edfd-9d55-4227-b819-a36fbe40d097.png)
 
+These two charts allow us to compare active and non-active minutes versus the users' BMI. As previously hypothesized, we can observe a relationship between activity levels and BMI. The more minutes of non-activity, the higher the BMI will be; while the more active an individual is, the lower his or her BMI will be.
 
+### CONCLUSIONS
 
+Considering the analysis conducted, it is no secret that physical activity enhances people's lives. The three specifc relationships found during the analyis included: 
+1) Very-active minutes yielded a higher amount of calories burned. The more active, the more calories burned, and vice versa.
+2) Although we cannot conclude that higher activity levels result in improved quality of sleep, we can say that the more inactive or sedentary a person becomes, the less amount of sleep they get.  
+3) An active person at various levels - very, fairly, lightly - will have a lower BMI than someone who is not active.
 
+### HIGH-LEVEL RECOMMENDATIONS
+
+All the data utilized to conduct this analysis came from Fitbit users, that just like Bellebeat, offer smart devices that boast distance tracking, calories burned, heart rate monitoring, sleep tracking, GPS, and tons of other nifty features. In today's world, where we are only getting more and more digital and where people are constantly on their phones, the concept of the app can truly be taken further. The following data-driven decisions are suggested for the future of the Bellabeat app:  
+
+- Create a functionality within the app that reminds users to move, take a walk, or exercise.
+- If they do engage in physical activity, reward them with a point/star system, so they feel drawn to the idea of movement. Accumulated points could serve as discount code for their next purchase.
+- Have weekly and monthly challenges: let's say a person works out 3-4 times a week, then such individual gets 'x' amounts of points/stars.
+- Every morning, have a notification message that ask them about their sleep quality and quantity so they can rate it and then compare results.
 
