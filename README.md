@@ -150,5 +150,5 @@ All the data utilized to conduct this analysis came from Fitbit users, that just
 - Create a functionality within the app that reminds users to move, take a walk, or exercise.
 - If they do engage in physical activity, reward them with a point/star system, so they feel drawn to the idea of movement. Accumulated points could serve as discount code for their next purchase.
 - Have weekly and monthly challenges: let's say a person works out 3-4 times a week, then such individual gets 'x' amounts of points/stars.
-- Every morning, have a notification message that ask them about their sleep quality and quantity so they can rate it and then compare results.
+- Every morning, send a notification message that asks them about their sleep quality so they can rate it.
 
